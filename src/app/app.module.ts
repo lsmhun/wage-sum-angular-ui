@@ -7,10 +7,18 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ApiModule } from 'build/openapi/api.module';
+import { EmpTreeComponent } from './emp-tree/emp-tree.component';
+import { EmpDetailsComponent } from './emp-details/emp-details.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HeadNavComponent } from './head-nav/head-nav.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EmpTreeComponent,
+    EmpDetailsComponent,
+    PageNotFoundComponent,
+    HeadNavComponent
   ],
   imports: [
     BrowserModule,
