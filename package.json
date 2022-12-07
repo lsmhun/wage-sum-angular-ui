@@ -3,9 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "generate:api": "openapi-generator-cli generate -g typescript-angular -i https://raw.githubusercontent.com/lsmhun/wage-sum-server/main/api/wagesum-openapi.yaml -o ./build/openapi",
+    "prestart": "npm run generate:api",
     "start": "ng serve",
+    "pre-build": "npm run generate:api",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "pretest": "npm run generate:api",
     "test": "ng test"
   },
   "private": true,
@@ -20,6 +24,7 @@
     "@angular/platform-browser": "^15.0.0",
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
+    "@openapitools/openapi-generator-cli": "^2.5.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "typeface-roboto": "^1.1.13",
