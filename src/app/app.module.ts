@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ApiModule } from 'build/openapi/api.module';
 import { EmpTreeComponent } from './emp-tree/emp-tree.component';
 import { EmpDetailsComponent } from './emp-details/emp-details.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeadNavComponent } from './head-nav/head-nav.component';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { UsedMaterialModule } from '../material.modules';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { HeadNavComponent } from './head-nav/head-nav.component';
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MatSlideToggleModule
+    FormsModule,
+    UsedMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
