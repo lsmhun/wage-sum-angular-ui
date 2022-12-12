@@ -13,6 +13,7 @@ import { HeadNavComponent } from './head-nav/head-nav.component';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UsedMaterialModule } from '../material.modules';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { UsedMaterialModule } from '../material.modules';
     AppRoutingModule,
     NoopAnimationsModule,
     FormsModule,
+    HttpClientModule,
     UsedMaterialModule
   ],
   providers: [],
