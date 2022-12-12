@@ -15,6 +15,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UsedMaterialModule } from '../material.modules';
 import { HttpClientModule } from '@angular/common/http';
 
+import { environment } from '../environments/environment';
+import { BASE_PATH } from 'build/openapi/variables';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     UsedMaterialModule
   ],
-  providers: [],
+  providers: [{ provide: BASE_PATH, useValue: environment.API_BASE_PATH }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
