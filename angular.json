@@ -84,9 +84,14 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "your-application-name:build",
+            "proxyConfig": "src/environments/proxy.conf.json"
+          },
           "configurations": {
             "production": {
-              "browserTarget": "wage-sum-angular-ui:build:production"
+              "browserTarget": "wage-sum-angular-ui:build:production",
+              "proxyConfig": "src/environments/proxy-prod.conf.json"
             },
             "staging": {
               "browserTarget": "wage-sum-angular-ui:build:production"
