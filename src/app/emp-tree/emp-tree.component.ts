@@ -67,11 +67,10 @@ export class DynamicDataSource implements DataSource<DynamicFlatNode> {
 
         node.isLoading = true;
 
-        setTimeout(() => {
           if (expand) {
 
             const nodes = children.map(emp => {
-              let currentId: number = emp.id ?? NaN;
+              let currentId: number = emp.empId ?? NaN;
               var name = emp.lastName + ', ' + emp.firstName;
               return new DynamicFlatNode(name, node.level + 1, true, false, currentId);
             });
@@ -89,7 +88,6 @@ export class DynamicDataSource implements DataSource<DynamicFlatNode> {
           // notify the change
           this.dataChange.next(this.data);
           node.isLoading = false;
-        }, 1000);
       });
   }
 }
@@ -120,21 +118,11 @@ export class EmpTreeComponent implements OnInit {
 
 
   ngOnInit() {
-
-    //this.dataSource.data 
-    /*this.employeeService.findEmpsByMgrId(NaN)
-      .subscribe(res => {
-        let rootEmp: Emp = res[0];
-        let rootEmpId: number = rootEmp.empId ?? NaN;
-        let k: DynamicFlatNode[] = [];
-        let dfn = new DynamicFlatNode(rootEmp.lastName + ', ' + rootEmp.firstName, 1, true, false, rootEmpId);
-        k[0] = dfn;
-        this.dataSource.data = k;
-      });*/
       let k: DynamicFlatNode[] = [];
-      let dfn = new DynamicFlatNode(' A B ', 1, true, false, 0);
+      // root element
+      let dfn = new DynamicFlatNode('ACME Corp.', 1, true, false, 0);
       k[0] = dfn;
-        this.dataSource.data = k;
+      this.dataSource.data = k;
   }
 
 }

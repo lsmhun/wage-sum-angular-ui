@@ -11,6 +11,7 @@
                 <tr>
                     <td>
                         <mat-form-field class="example-full-width">
+                            <mat-label>Username</mat-label>
                             <input matInput placeholder="Username" [(ngModel)]="emp.userName" name="username" required>
                             <mat-error>This field is required</mat-error>
                         </mat-form-field>
@@ -19,6 +20,7 @@
                 <tr>
                     <td>
                         <mat-form-field class="example-full-width">
+                            <mat-label>First name</mat-label>
                             <input matInput placeholder="First name" [(ngModel)]="emp.firstName" name="firstName"
                                 required>
                                 <mat-error>This field is required</mat-error>
@@ -28,9 +30,44 @@
                 <tr>
                     <td>
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Last name" [(ngModel)]="emp.lastName" name="lastNAme"
+                            <mat-label>Last name</mat-label>
+                            <input matInput placeholder="Last name" [(ngModel)]="emp.lastName" name="lastName"
                                 required>
                                 <mat-error>This field is required</mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Employee manager</mat-label>
+                            <mat-select [(value)]="emp.mgrId">
+                                <mat-option *ngFor="let mgr of managers" [value]="mgr.empId"
+                                >{{mgr.firstName}}, {{mgr.lastName}} </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Employee status</mat-label>
+                            <mat-select [(value)]="emp.status">
+                                <mat-option *ngFor="let stat of empStatuses" [value]="stat"
+                                >{{stat}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Employee type</mat-label>
+                            <mat-select [(value)]="emp.type">
+                                <mat-option *ngFor="let type of empTypes" [value]="type | uppercase"
+                                >{{type | uppercase}}</mat-option>
+                            </mat-select>
                         </mat-form-field>
                     </td>
                 </tr>
