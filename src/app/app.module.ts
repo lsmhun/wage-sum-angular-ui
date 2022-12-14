@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { environment } from '../environments/environment';
 import { BASE_PATH } from 'build/openapi/variables';
+import { SalMinimalComponent } from './sal-minimal/sal-minimal.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { BASE_PATH } from 'build/openapi/variables';
     EmpTreeComponent,
     EmpDetailsComponent,
     PageNotFoundComponent,
-    HeadNavComponent
+    HeadNavComponent,
+    SalMinimalComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,9 @@
      </button>
      <a mat-button *ngIf="node.id != 0" [routerLink]="['/', 'emp',node.id]">{{node.item}}</a>
      <span *ngIf="node.id == 0" >{{node.item}}</span>
+
+     <app-sal-minimal  *ngIf="node.id != 0" [empId]="node.id"></app-sal-minimal>
+
      <mat-progress-bar *ngIf="node.isLoading"
                        mode="indeterminate"
                        class="example-tree-progress-bar"></mat-progress-bar>
