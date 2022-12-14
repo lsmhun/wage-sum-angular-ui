@@ -1,0 +1,31 @@
+{{ emp.empId }} - {{ empSal }}
+
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>Employee salary</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <form class="example-form">
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Salary</mat-label>
+                            <input matInput type="number" [(ngModel)]="empSal" name="salary" min="0">
+                            <mat-error>Salary cannot be negative!</mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button mat-raised-button (click)="updateEmpSalary()">Update salary</button>
+                        <p>{{ message }}</p>
+                    </td>
+                </tr>
+            </table>
+            <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"
+         ></mat-spinner>
+        </form>
+    </mat-card-content>
+</mat-card>
