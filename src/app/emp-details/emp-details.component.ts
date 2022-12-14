@@ -51,7 +51,7 @@ export class EmpDetailsComponent implements OnInit {
       } as Emp;
 
     } else {
-      const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+      const id = parseInt(this.route.snapshot.paramMap.get('id')!, 0);
       this.employeeService.getEmpById(id)
         .subscribe(c => this.emp = c);
     }
