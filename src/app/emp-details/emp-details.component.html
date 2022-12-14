@@ -65,15 +65,23 @@
                         <mat-form-field class="example-full-width">
                             <mat-label>Employee type</mat-label>
                             <mat-select [(value)]="emp.type">
-                                <mat-option *ngFor="let type of empTypes" [value]="type | uppercase"
-                                >{{type | uppercase}}</mat-option>
+                                <mat-option *ngFor="let type of empTypes" [value]="type"
+                                >{{type}}</mat-option>
                             </mat-select>
                         </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button mat-raised-button (click)="update()">Save</button>
+                        <button mat-raised-button color="warn" (click)="deleteEmployee()">Delete</button>
+                        <p>{{message}}</p>
                     </td>
                 </tr>
                 
             </table>
         </form>
-        <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+        <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"
+         ></mat-spinner>
     </mat-card-content>
 </mat-card>

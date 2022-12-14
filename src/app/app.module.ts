@@ -3,7 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+//import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { ApiModule } from 'build/openapi/api.module';
 import { EmpTreeComponent } from './emp-tree/emp-tree.component';
@@ -29,7 +31,8 @@ import { BASE_PATH } from 'build/openapi/variables';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NoopAnimationsModule,
+    //NoopAnimationsModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     UsedMaterialModule
