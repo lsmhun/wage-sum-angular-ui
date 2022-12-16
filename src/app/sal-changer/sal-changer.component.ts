@@ -24,7 +24,6 @@ export class SalChangerComponent implements OnInit, OnChanges {
     });
   }
 
-  //@Input() empId?: number;
   @Input() emp: Emp;
   empSal: number = 0;
 
@@ -73,6 +72,8 @@ export class SalChangerComponent implements OnInit, OnChanges {
             }
           }
           );
+    } else{
+      this.message = "Employee is not identified";
     }
   }
 }

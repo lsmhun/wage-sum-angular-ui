@@ -24,7 +24,7 @@ export class EmpDetailsComponent implements OnInit {
       console.log("reloaded");
     });
   }
-  @Input() emp: Emp;
+  @Input() emp: Emp = {} as Emp;
 
   showSpinner = false;
 

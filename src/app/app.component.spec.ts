@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { UsedMaterialModule } from 'src/material.modules';
 import { AppComponent } from './app.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { EmpTreeComponent } from './emp-tree/emp-tree.component';
 import { HeadNavComponent } from './head-nav/head-nav.component';
 
@@ -9,7 +9,8 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        UsedMaterialModule
       ],
       declarations: [
         AppComponent,

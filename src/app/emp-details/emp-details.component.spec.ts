@@ -1,5 +1,16 @@
+import { HttpEvent, HttpResponse } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Emp, EmpService, SalService } from 'build/openapi';
+import { of } from 'rxjs';
+import { UsedMaterialModule } from 'src/material.modules';
 
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { FormsModule } from '@angular/forms';
+
+import { SalChangerComponent } from '../sal-changer/sal-changer.component';
 import { EmpDetailsComponent } from './emp-details.component';
 
 describe('EmpDetailsComponent', () => {
@@ -8,13 +19,44 @@ describe('EmpDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmpDetailsComponent ]
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        FormsModule,
+        UsedMaterialModule,
+        BrowserAnimationsModule
+      ],
+      declarations: [EmpDetailsComponent, SalChangerComponent]
     })
-    .compileComponents();
-
+      .compileComponents();
     fixture = TestBed.createComponent(EmpDetailsComponent);
     component = fixture.componentInstance;
+    //component.emp = data;
     fixture.detectChanges();
+
+    // given empService
+    const empService = TestBed.inject(EmpService);
+    const data: Emp = {
+      firstName: "first",
+      lastName: "last",
+      empId: 2,
+      mgrId: 1,
+      status: Emp.StatusEnum.Active,
+      type: Emp.TypeEnum.Manager,
+      userName: "man1"
+    };
+    let httpEventEmp: HttpEvent<Emp> = new HttpResponse<Emp>({ body: data });
+    spyOn(empService, 'getEmpById').and.returnValue(of(httpEventEmp));
+
+    // given mgrList
+    let httpEventMgrList: HttpEvent<Array<Emp>> = new HttpResponse<Array<Emp>>({ body: [data] });
+    spyOn(empService, 'findEmpsByType').and.returnValue(of(httpEventMgrList));
+
+    // given salService
+    const salService = TestBed.inject(SalService);
+    let httpEventSal: HttpEvent<string> = new HttpResponse<string>({ body: "123" });
+    spyOn(salService, 'getSalByEmpId').and.returnValue(of(httpEventSal));
+
   });
 
   it('should create', () => {

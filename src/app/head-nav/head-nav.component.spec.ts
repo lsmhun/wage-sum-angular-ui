@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {MatToolbarHarness} from '@angular/material/toolbar/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { UsedMaterialModule } from 'src/material.modules';
 
 import { HeadNavComponent } from './head-nav.component';
 
@@ -9,6 +10,10 @@ describe('HeadNavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        UsedMaterialModule
+      ],
       declarations: [ HeadNavComponent ]
     })
     .compileComponents();

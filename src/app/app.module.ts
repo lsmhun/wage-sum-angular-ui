@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-import { ApiModule } from 'build/openapi/api.module';
 import { EmpTreeComponent } from './emp-tree/emp-tree.component';
 import { EmpDetailsComponent } from './emp-details/emp-details.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
