@@ -45,7 +45,7 @@ describe('SalChangerComponent', () => {
 
     // given salService
     const salService = TestBed.inject(SalService);
-    let httpEventSal: HttpEvent<string> = new HttpResponse<string>({body: "123"});
+    const httpEventSal: HttpEvent<string> = new HttpResponse<string>({body: "123"});
     spyOn(salService, 'getSalByEmpId').and.returnValue(of(httpEventSal));
 
     fixture = TestBed.createComponent(SalChangerComponent);

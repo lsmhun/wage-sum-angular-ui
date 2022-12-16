@@ -1,9 +1,7 @@
-import { Component, OnInit, Input, Injectable, Injector } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { Emp } from 'build/openapi/model/emp';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { EmpService } from 'build/openapi/api/emp.service';
-import { Router, NavigationEnd } from '@angular/router';
+import { Emp } from 'build/openapi/model/emp';
 
 import { filter } from 'rxjs/operators';
 
@@ -15,11 +13,10 @@ import { filter } from 'rxjs/operators';
 export class EmpDetailsComponent implements OnInit {
   constructor(private employeeService: EmpService,
     private route: ActivatedRoute,
-    private router: Router,
-    private location: Location) {
+    private router: Router) {
     router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe((event) => {
+    ).subscribe(() => {
       this.getEmployee();
       console.log("reloaded");
     });
@@ -34,7 +31,7 @@ export class EmpDetailsComponent implements OnInit {
 
   empTypes: Emp.TypeEnum[] = [Emp.TypeEnum.Employee, Emp.TypeEnum.Manager];
 
-  message: string = "";
+  message = "";
 
   ngOnInit() {
     this.getEmployee();
@@ -43,7 +40,7 @@ export class EmpDetailsComponent implements OnInit {
 
   getEmployee(): void {
     this.message = "";
-    const parameterId = this.route.snapshot.paramMap.get('id');
+    const parameterId = this.route.snapshot.paramMap.get('id') ?? 'new';
     if (parameterId === 'new') {
       this.emp = {
         status: Emp.StatusEnum.Active,
@@ -51,7 +48,7 @@ export class EmpDetailsComponent implements OnInit {
       } as Emp;
 
     } else {
-      const id = parseInt(this.route.snapshot.paramMap.get('id')!, 0);
+      const id = parseInt(parameterId, 0);
       this.employeeService.getEmpById(id)
         .subscribe(c => this.emp = c);
     }

@@ -40,16 +40,16 @@ describe('EmpTreeComponent', () => {
        type: Emp.TypeEnum.Manager,
        userName: "man1"
      };
-     let httpEventEmp: HttpEvent<Emp> = new HttpResponse<Emp>({ body: data });
+     const httpEventEmp: HttpEvent<Emp> = new HttpResponse<Emp>({ body: data });
      spyOn(empService, 'getEmpById').and.returnValue(of(httpEventEmp));
  
      // given mgrList
-     let httpEventMgrList: HttpEvent<Array<Emp>> = new HttpResponse<Array<Emp>>({ body: [data] });
+     const httpEventMgrList: HttpEvent<Array<Emp>> = new HttpResponse<Array<Emp>>({ body: [data] });
      spyOn(empService, 'findEmpsByType').and.returnValue(of(httpEventMgrList));
  
      // given salService
      const salService = TestBed.inject(SalService);
-     let httpEventSal: HttpEvent<string> = new HttpResponse<string>({ body: "123" });
+     const httpEventSal: HttpEvent<string> = new HttpResponse<string>({ body: "123" });
      spyOn(salService, 'getSalByEmpId').and.returnValue(of(httpEventSal));
 
     fixture = TestBed.createComponent(EmpTreeComponent);

@@ -7,19 +7,19 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-import { EmpTreeComponent } from './emp-tree/emp-tree.component';
 import { EmpDetailsComponent } from './emp-details/emp-details.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { EmpTreeComponent } from './emp-tree/emp-tree.component';
 import { HeadNavComponent } from './head-nav/head-nav.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { UsedMaterialModule } from '../material.modules';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { UsedMaterialModule } from '../material.modules';
 
-import { environment } from '../environments/environment';
 import { BASE_PATH } from 'build/openapi/variables';
-import { SalMinimalComponent } from './sal-minimal/sal-minimal.component';
+import { environment } from '../environments/environment';
 import { SalChangerComponent } from './sal-changer/sal-changer.component';
+import { SalMinimalComponent } from './sal-minimal/sal-minimal.component';
 
 @NgModule({
   declarations: [

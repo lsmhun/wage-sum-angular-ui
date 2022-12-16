@@ -23,12 +23,12 @@ export class SalMinimalComponent implements OnInit {
 
   collectEmpSalary(){
     this.salaryService.getSalByEmpId(this.empId)
-    .subscribe(c => this.empSal = parseInt(c!, 0));
+    .subscribe(c => this.empSal = parseInt(c, 0));
   }
 
 
   collectWageSum(){
     this.salaryService.getWageSumByMgrId(this.empId)
-    .subscribe(c => this.wageSum = parseInt(c!, 0));
+    .subscribe(c => this.wageSum = parseInt(c, 0));
   }
 }

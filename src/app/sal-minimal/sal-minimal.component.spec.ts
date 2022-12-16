@@ -4,12 +4,11 @@ import { UsedMaterialModule } from 'src/material.modules';
 
 import { of } from 'rxjs';
 
-import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
+import { HttpEvent, HttpResponse } from '@angular/common/http';
 
-import { Emp, EmpService, SalService } from 'build/openapi';
+import { SalService } from 'build/openapi';
 
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { SalMinimalComponent } from './sal-minimal.component';
 
@@ -30,7 +29,7 @@ describe('SalMinimalComponent', () => {
 
     // given salService
     const salService = TestBed.inject(SalService);
-    let httpEventSal: HttpEvent<string> = new HttpResponse<string>({body: "123"});
+    const httpEventSal: HttpEvent<string> = new HttpResponse<string>({body: "123"});
     spyOn(salService, 'getSalByEmpId').and.returnValue(of(httpEventSal));
 
     fixture = TestBed.createComponent(SalMinimalComponent);

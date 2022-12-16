@@ -1,7 +1,6 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { SalService } from 'build/openapi';
-import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 import { Emp } from 'build/openapi/model/emp';
@@ -14,21 +13,20 @@ import { Emp } from 'build/openapi/model/emp';
 export class SalChangerComponent implements OnInit, OnChanges {
 
   constructor(private salaryService: SalService,
-    private route: ActivatedRoute,
     private router: Router) {
     router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe((event) => {
+    ).subscribe(() => {
       this.empSal = 0;
       this.collectEmpSalary();
     });
   }
 
   @Input() emp: Emp;
-  empSal: number = 0;
+  empSal = 0;
 
-  message: string = "";
-  showSpinner: boolean = false;
+  message = "";
+  showSpinner = false;
 
   ngOnInit() {
     this.collectEmpSalary();
@@ -40,18 +38,18 @@ export class SalChangerComponent implements OnInit, OnChanges {
 
   collectEmpSalary() {
     this.message = "";
-    let eid = this.emp.empId ?? -1;
+    const eid = this.emp.empId ?? -1;
     if (eid === -1) {
       this.empSal = 0;
     } else {
       this.salaryService.getSalByEmpId(eid)
-        .subscribe(c => this.empSal = parseInt(c!, 0));
+        .subscribe(c => this.empSal = parseInt(c, 0));
     }
   }
 
   updateEmpSalary() {
-    let salStr: string = String(this.empSal);
-    let eId = this.emp.empId ?? -1;
+    const salStr = String(this.empSal);
+    const eId = this.emp.empId ?? -1;
     if (eId !== -1) {
       this.salaryService.updateSalWithForm(eId, salStr)
         .subscribe(

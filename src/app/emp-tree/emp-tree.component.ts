@@ -1,12 +1,11 @@
-import { Component, OnInit, Injectable, Injector } from '@angular/core';
-import { CollectionViewer, SelectionChange, DataSource } from '@angular/cdk/collections';
+import { CollectionViewer, DataSource, SelectionChange } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
 
 import { EmpService } from 'build/openapi/api/emp.service';
-import { Emp } from 'build/openapi/model/models';
 
 
 /** Flat node with expandable and level information */
@@ -45,7 +44,10 @@ export class DynamicDataSource implements DataSource<DynamicFlatNode> {
     return merge(collectionViewer.viewChange, this.dataChange).pipe(map(() => this.data));
   }
 
-  disconnect(collectionViewer: CollectionViewer): void { }
+  disconnect(collectionViewer: CollectionViewer): void { 
+    collectionViewer.viewChange.forEach(a => console.debug(a));
+    this.dataChange.complete();
+  }
 
   /** Handle expand/collapse behaviors */
   handleTreeControl(change: SelectionChange<DynamicFlatNode>) {
@@ -70,8 +72,8 @@ export class DynamicDataSource implements DataSource<DynamicFlatNode> {
           if (expand) {
 
             const nodes = children.map(emp => {
-              let currentId: number = emp.empId ?? NaN;
-              var name = emp.lastName + ', ' + emp.firstName;
+              const currentId: number = emp.empId ?? NaN;
+              const name = emp.lastName + ', ' + emp.firstName;
               return new DynamicFlatNode(name, node.level + 1, true, false, currentId);
             });
             this.data.splice(index + 1, 0, ...nodes);
@@ -81,7 +83,9 @@ export class DynamicDataSource implements DataSource<DynamicFlatNode> {
               let i = index + 1;
               i < this.data.length && this.data[i].level > node.level;
               i++, count++
-            ) { }
+            ) { 
+              // just for count++
+            }
             this.data.splice(index + 1, count);
           }
 
@@ -118,9 +122,9 @@ export class EmpTreeComponent implements OnInit {
 
 
   ngOnInit() {
-      let k: DynamicFlatNode[] = [];
+      const k: DynamicFlatNode[] = [];
       // root element
-      let dfn = new DynamicFlatNode('ACME Corp.', 1, true, false, 0);
+      const dfn = new DynamicFlatNode('ACME Corp.', 1, true, false, 0);
       k[0] = dfn;
       this.dataSource.data = k;
   }
