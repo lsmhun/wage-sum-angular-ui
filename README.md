@@ -3,6 +3,8 @@
 This project is an [Angular](https://angular.io/) UI for
 [WageSum](https://github.com/lsmhun/wage-sum-server) server side application. 
 
+![Wagesum Angular UI](docs/wagesum-ui-01-emp-tree.png)
+
 ## Running the application
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 

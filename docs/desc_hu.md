@@ -210,7 +210,7 @@ Először a app-head-nav nál érdemes kipróbálni, hogy megy-e. Aztán jöhet 
 A következő az dolgozói adat form lehet. Elsőre nem a szépség a fő cél, csak látsszon valami,
 de már material design-nal.
 
-![Wagesum Angular UI](wagesum-ui-03-emp-details-select.png)
+![Wagesum Angular UI - employee form](wagesum-ui-03-emp-details-select.png)
 
 Amikor routing már működni kezd, akkor szeretnénk például az _empId_ paramétert megkapni.
 Erre a @Input annotáció szolgál, de null-safety kapcsán kicsit enyhíthető a szigor, mint
@@ -329,7 +329,7 @@ a választ emulálni.
 A sorrend fontos: előbb kell legyen az instance  _TestBed.configureTestingModule()_l és csak utána
 lehet injektálni, meg spyOn()-t használni.
 
-![Wagesum Angular UI - employee details](wagesum-ui-05-karma-test.png)
+![Wagesum Angular UI - karma test](wagesum-ui-05-karma-test.png)
 
 Tegyünk fel egy lint -et is, ami segít kitakarítani a kódot. Amikor először próbáljuk 
 meg futtatni, akkor felkínál ESLint-et, de bármelyik másik is választható. 
