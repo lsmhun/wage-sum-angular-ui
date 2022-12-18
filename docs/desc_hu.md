@@ -16,7 +16,7 @@ terméket cégen belül is.
 
 Ennek örömére készítettem a [WageSum](https://github.com/lsmhun/wage-sum-server) 
 microservice-nek egy Angular UI-t. Miért épp Angular? Vannak más framework-ok is, de 
-ez az egyik legelterjedtebb (oké a react még inkább az, a flutter pedig nagyon 
+ez az egyik legelterjedtebb (oké a [react](https://reactjs.org/) még inkább az, a [flutter](https://flutter.dev/) pedig nagyon 
 pörög, arról is érdemes majd pár szót írni), felépítése hasonlít a 
 Spring-hez, komoly támogatás van mögötte. [TypeScript](https://www.typescriptlang.org/)
 nyelvet használ, ami a típusosságot kellően komolyan veszi. Sok-sok cikk született már 
@@ -24,7 +24,7 @@ erről, nem fejtegetem bővebben.
 
 Személyes ok még az is, hogy még 2019-ben
 készítettem egy pet projectet, amit máig (2022. december) lényegében néhány
-"npm upgrade" paranccsal, különösebb változás nélkül lehetett naprakészen tartani.
+`npm upgrade` paranccsal, különösebb változás nélkül lehetett naprakészen tartani.
 Ezt azért kevés UI framework mondhatja el magáról.
 
 Természetesen egy igazi UI specialista nagyon sok hibát, rossz gyakorlatot,
@@ -35,8 +35,8 @@ elavult elemet tudna találni. Jöhetnek a pull requestek. :)
 ## 1. Project alapok
 Kezdésnek fel kell tennünk a [NodeJS](https://nodejs.org/en/download/) aktuális verzióját,
 majd telepíthetjük az Angular CLI csomagot is. Mindkettőt időről időre frissíteni kell,
-de az "npm upgrade --force" és az "npm audit fix" (esetleg --force kapcsolóval) parancsok 
-gyakori futtatása segít napra készen tartani. 
+de az `npm upgrade` és az `npm audit fix` (esetleg --force kapcsolóval) parancsok 
+gyakori futtatása segít rendben tartani a kódot security szempontból is. 
 
 ```shell
 npm install -g @angular/cli
@@ -46,13 +46,13 @@ ng new wage-sum-angular-ui
 
 Itt pár kérdésre válaszolni kell. Routing-ot szeretnénk használni, CSS helyett
 SASS-t választottam, de igazán nem használtam semmi extrát. Már ebben az állapotban
-el lehet indítani az alkalmazást a "ng serve -o" paranccsal.
+el lehet indítani az alkalmazást a `ng serve -o` paranccsal.
 
 Lehet a kedvenc IntelliJ Idea-t is használni, de a webes kiegészítő már fizetős,
 így az ingyenes [Visual Studio Code](https://code.visualstudio.com/) néhány pluginnal 
 ( Angular Language Service, Sass extensions) elegendő a legtöbb igény kielégítésére.
 
-Mivel vagyok jó designer, de azért szeretem, ha esztétikusan néz ki egy 
+Mivel nem vagyok jó designer, de azért szeretem, ha esztétikusan néz ki egy 
 felület, ezért aztán a legismertebb design könyvtárat, a [Material](https://material.angular.io/)
 design Angular komponenseit használom. Mint később látható, ezzel nagyon kényelmes
 elérni a legtöbb funkcionalitást.
@@ -77,7 +77,7 @@ modult is. Ezek után már látszani fog a kis csúszókapcsoló.
 ```html
 <mat-slide-toggle>Toggle me!</mat-slide-toggle> 
 ```
-Annak érdekében, hogy még az "ng test" futására a Unit tesztek is túléljenek, 
+Annak érdekében, hogy még az `ng test` futására a Unit tesztek is túléljenek, 
 bizonyos tesztelő importokat a teszt _app.component.spec.ts_ fájlban is fel kell venni. 
 
 ```typescript
@@ -121,10 +121,10 @@ csak vegyük fel a _.gitignore_ fájlba is.
 
 A [convention over configuration](https://en.wikipedia.org/wiki/Convention_over_configuration)
  nevében az npm esetén a [package.json](../package.json)-ban
-lehet felvenni "script{ ... }" definíciókat, ahol ha a _pre_ vagy _post_ prefixet 
+lehet felvenni `script{ ... }` definíciókat, ahol ha a _pre_ vagy _post_ prefixet 
 alkalmazod, akkor előtte/utána fog lefutni a kért parancs. Így felvettem 
 ide a generálást, hogy mindig megtörténjen npm build/serve/test előtt.
-Ez eléggé lassít, de legtöbbször úgyis az "ng serve -o" lesz futtatva.
+Ez eléggé lassít, de legtöbbször úgyis az `ng serve -o` lesz futtatva.
 
 ```json
 ...
@@ -235,7 +235,7 @@ fogyasztott sokat, plusz ott is előkerült pár bug.
 A környezetek definiálása nem megkerülhető ezen a ponton, mivel 
 fejlesztéshez tökéletesen elég a 127.0.0.1 cím, de production már mást kérhet.
 Erre [build guide](https://angular.io/guide/build) ad mintát, és ettől kezdve
-"ng serve --configuration=development -o" paranccsal tudjuk futtatni az
+`ng serve --configuration=development -o` paranccsal tudjuk futtatni az
 alkalmazást. 
 
 A [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) miatt szükség
@@ -247,7 +247,7 @@ tovább.
 ```typescript
   providers: [{ provide: BASE_PATH, useValue: environment.API_BASE_PATH }],
 ```
-Ha Chrome-ban a debug oldalt nézzük, már látható, hogy a kérések ettől kezdve a "/api" címre fognak 
+Ha Chrome-ban a debug oldalt nézzük, már látható, hogy a kérések ettől kezdve a `/api` címre fognak 
 beérkezni, amit a proxy modul fog továbbítani a tényleges, BASE_PATH-ban
 beállított cím felé. 
 
@@ -343,11 +343,11 @@ utólagos takarításra használtam.
 A konténerek használata minden microservice-nek része.
 [Angular alkalmazás dockerizálása](https://medium.com/codex/dockerize-angular-application-69e7503d1816)
 témában rengeteg példa elérhető. Az alkalmazott eset előbb 
-az "npm build" segítségével legyártja a _dist_ könyvtárba a production
+az `npm build` segítségével legyártja a _dist_ könyvtárba a production
 ready kódot, majd egy ngix konténerhez hozzáadja. 
 
 Rengeteg ideig fut, kihajtja napjaink csúcsgépeit is. 
-Helyette lehet lokálisan buildelni egy "npm run build --prod" 
+Helyette lehet lokálisan buildelni egy `npm run build --prod` 
 paranccsal egy normál kimenetet és ehhez gyártani egy másik 
 Dockerfile-t.  
 
