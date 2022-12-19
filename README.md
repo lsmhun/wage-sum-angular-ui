@@ -4,6 +4,7 @@ This project is an [Angular](https://angular.io/) UI for
 [WageSum](https://github.com/lsmhun/wage-sum-server) server side application. 
 
 ![Wagesum Angular UI](docs/wagesum-ui-01-emp-tree.png)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Flsmhun%2Fwage-sum-angular-ui.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Flsmhun%2Fwage-sum-angular-ui?ref=badge_shield)
 
 ## Running the application
 
@@ -16,3 +17,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Documentation
 * [English documentation](docs/desc_en.md)
 * [Hungarian documentation](docs/desc_hu.md)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Flsmhun%2Fwage-sum-angular-ui.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Flsmhun%2Fwage-sum-angular-ui?ref=badge_large)
