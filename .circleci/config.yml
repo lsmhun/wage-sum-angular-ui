@@ -1,0 +1,77 @@
+# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
+version: 2.1
+
+# Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
+# See: https://circleci.com/docs/2.0/orb-intro/
+orbs:
+  node: circleci/node@5.0.3
+  browser-tools: circleci/browser-tools@1.1.0
+
+environment:
+  CHROME_BIN: /usr/bin/google-chrome karma start --single-run
+
+jobs:
+    # install browsers
+    install-browsers:
+        docker:
+            - image: cimg/node:19.2.0-browsers
+        steps:
+            - browser-tools/install-browser-tools
+    # The test job
+    test:
+        working_directory: ~/project-name
+        docker:
+            - image: cimg/node:19.2.0-browsers
+        steps:
+            - browser-tools/install-browser-tools
+            # Checkout the code from the branch into the working_directory
+            - checkout
+            # Log the current branch
+            - run:
+                name: Show current branch
+                command: echo ${CIRCLE_BRANCH}
+            # Restore local dependencies from cache
+            - restore_cache:
+                keys:
+                - v1-dependencies-{{ checksum "package-lock.json" }}
+                - v1-dependencies-
+            # Install project dependencies
+            - run:
+                name: Install local dependencies
+                command: npm install
+            # Cache local dependencies if they don't exist
+            - save_cache:
+                key: v1-dependencies-{{ checksum "package-lock.json" }}
+                paths:
+                    - node_modules
+            # Lint the source code
+            - run:
+                name: Linting
+                command: npm run lint
+            # Test the source code
+            - run:
+                name: Testing
+                command: npm run test -- --no-watch --no-progress --browsers=Chrome
+            # End to End test
+            #- run:
+            #    name: End to End Test
+            #    command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+
+
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+workflows:
+  angular-build: # This is the name of the workflow, feel free to change it to better match your workflow.
+    # Inside the workflow, you define the jobs you want to run.
+    jobs:
+      # - install-browsers
+       - test
+      #- node/test:
+          # This is the node version to use for the `cimg/node` tag
+          # Relevant tags can be found on the CircleCI Developer Hub
+          # https://circleci.com/developer/images/image/cimg/node
+      #    version: '19.2.0-browsers'
+          # If you are using yarn, change the line below from "npm" to "yarn"
+      #    pkg-manager: npm
+          
+          
