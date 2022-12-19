@@ -7,7 +7,7 @@ orbs:
   node: circleci/node@5.0.3
 
 environment:
-  CHROME_BIN: /usr/bin/google-chrome
+  CHROME_BIN: /usr/bin/google-chrome karma start --single-run
 
 jobs:
     # The test job
