@@ -19,13 +19,13 @@ jobs:
             - browser-tools/install-browser-tools
     # The test job
     test:
-        #working_directory: ~/wage-sum-angular-ui
+        working_directory: ~/wage-sum-angular-ui
         docker:
-            - image: cimg/node:19.2.0-browsers
+            - image: cimg/node:19.5.0-browsers
         steps:
-            - browser-tools/install-browser-tools
             # Checkout the code from the branch into the working_directory
             - checkout
+            - browser-tools/install-browser-tools
             # Log the current branch
             - run:
                 name: Show current branch
