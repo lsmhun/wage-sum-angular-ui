@@ -19,7 +19,7 @@ jobs:
             - browser-tools/install-browser-tools
     # The test job
     test:
-        working_directory: ~/wage-sum-angular-ui
+        #working_directory: ~/wage-sum-angular-ui
         docker:
             - image: cimg/node:19.2.0-browsers
         steps:
