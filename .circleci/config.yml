@@ -14,18 +14,20 @@ jobs:
     # install browsers
     install-browsers:
         docker:
-            - image: cimg/node:19.2.0-browsers
+            - image: cimg/node:20.8.1-browsers
         steps:
             - browser-tools/install-browser-tools
     # The test job
     test:
         working_directory: ~/wage-sum-angular-ui
         docker:
-            - image: cimg/node:19.5.0-browsers
+            - image: cimg/node:20.8.1-browsers
         steps:
             # Checkout the code from the branch into the working_directory
             - checkout
-            - browser-tools/install-browser-tools
+            #- browser-tools/install-browser-tools
+            - browser-tools/install-browser-tools:
+                chrome-version: 114.0.5735.90 # TODO: remove -> https://github.com/CircleCI-Public/browser-tools-orb/issues/75
             # Log the current branch
             - run:
                 name: Show current branch
