@@ -10,6 +10,13 @@ This project is an [Angular](https://angular.io/) UI for
 
 ## Running the application
 
+First time you need to prepare the build, as a regular Angular application.
+
+```shell
+npm install
+npm run generate:api
+```
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
 
 ## Build
