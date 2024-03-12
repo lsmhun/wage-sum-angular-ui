@@ -20,6 +20,7 @@ import { BASE_PATH } from 'build/openapi/variables';
 import { environment } from '../environments/environment';
 import { SalChangerComponent } from './sal-changer/sal-changer.component';
 import { SalMinimalComponent } from './sal-minimal/sal-minimal.component';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SalMinimalComponent } from './sal-minimal/sal-minimal.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    UsedMaterialModule
+    UsedMaterialModule,
+    IonicModule.forRoot({})
   ],
   providers: [{ provide: BASE_PATH, useValue: environment.API_BASE_PATH }],
   bootstrap: [AppComponent]

@@ -1,0 +1,7 @@
+{
+  "name": "wage-sum-angular-ui",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

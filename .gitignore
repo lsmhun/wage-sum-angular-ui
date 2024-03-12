@@ -42,3 +42,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+#Ionic and cordova
+*.keystore
+*.sw*
+platforms/^.*
