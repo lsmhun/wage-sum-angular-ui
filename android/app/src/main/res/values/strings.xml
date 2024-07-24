@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">WageSumUI</string>
+    <string name="title_activity_main">WageSumUI</string>
+    <string name="package_name">hu.lsmhun.wagesum.angui</string>
+    <string name="custom_url_scheme">hu.lsmhun.wagesum.angui</string>
+</resources>
