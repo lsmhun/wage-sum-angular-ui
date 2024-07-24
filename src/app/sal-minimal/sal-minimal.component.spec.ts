@@ -4,11 +4,11 @@ import { UsedMaterialModule } from 'src/material.modules';
 
 import { of } from 'rxjs';
 
-import { HttpEvent, HttpResponse } from '@angular/common/http';
+import { HttpEvent, HttpResponse, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { SalService } from 'build/openapi';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { SalMinimalComponent } from './sal-minimal.component';
 
@@ -18,13 +18,11 @@ describe('SalMinimalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
-        UsedMaterialModule
-      ],
-      declarations: [ SalMinimalComponent ]
-    })
+    declarations: [SalMinimalComponent],
+    imports: [RouterTestingModule,
+        UsedMaterialModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
     .compileComponents();
 
     // given salService

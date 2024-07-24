@@ -5,11 +5,11 @@ import { UsedMaterialModule } from 'src/material.modules';
 
 import { of } from 'rxjs';
 
-import { HttpEvent, HttpResponse } from '@angular/common/http';
+import { HttpEvent, HttpResponse, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { Emp, EmpService, SalService } from 'build/openapi';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { EmpTreeComponent } from './emp-tree.component';
 
@@ -19,13 +19,11 @@ describe('EmpTreeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
-        UsedMaterialModule
-      ],
-      declarations: [ EmpTreeComponent ]
-    })
+    declarations: [EmpTreeComponent],
+    imports: [RouterTestingModule,
+        UsedMaterialModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
     .compileComponents();
 
 

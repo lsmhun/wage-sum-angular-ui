@@ -12,7 +12,7 @@ import { EmpTreeComponent } from './emp-tree/emp-tree.component';
 import { HeadNavComponent } from './head-nav/head-nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { UsedMaterialModule } from '../material.modules';
 
@@ -21,26 +21,19 @@ import { environment } from '../environments/environment';
 import { SalChangerComponent } from './sal-changer/sal-changer.component';
 import { SalMinimalComponent } from './sal-minimal/sal-minimal.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    EmpTreeComponent,
-    EmpDetailsComponent,
-    PageNotFoundComponent,
-    HeadNavComponent,
-    SalMinimalComponent,
-    SalChangerComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    //NoopAnimationsModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
-    UsedMaterialModule
-  ],
-  providers: [{ provide: BASE_PATH, useValue: environment.API_BASE_PATH }],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        EmpTreeComponent,
+        EmpDetailsComponent,
+        PageNotFoundComponent,
+        HeadNavComponent,
+        SalMinimalComponent,
+        SalChangerComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        //NoopAnimationsModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        UsedMaterialModule], providers: [{ provide: BASE_PATH, useValue: environment.API_BASE_PATH }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

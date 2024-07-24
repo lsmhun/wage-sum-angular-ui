@@ -7,11 +7,11 @@ import { UsedMaterialModule } from 'src/material.modules';
 import { FormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 
-import { HttpEvent, HttpResponse } from '@angular/common/http';
+import { HttpEvent, HttpResponse, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { Emp, SalService } from 'build/openapi';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { SalChangerComponent } from './sal-changer.component';
 
@@ -32,15 +32,13 @@ describe('SalChangerComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
+    declarations: [SalChangerComponent],
+    imports: [RouterTestingModule,
         FormsModule,
         UsedMaterialModule,
-        BrowserAnimationsModule
-      ],
-      declarations: [ SalChangerComponent ]
-    })
+        BrowserAnimationsModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
     .compileComponents();
 
     // given salService

@@ -1,4 +1,4 @@
-import { HttpEvent, HttpResponse } from '@angular/common/http';
+import { HttpEvent, HttpResponse, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -6,7 +6,7 @@ import { Emp, EmpService, SalService } from 'build/openapi';
 import { of } from 'rxjs';
 import { UsedMaterialModule } from 'src/material.modules';
 
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { FormsModule } from '@angular/forms';
 
@@ -19,15 +19,13 @@ describe('EmpDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
+    declarations: [EmpDetailsComponent, SalChangerComponent],
+    imports: [RouterTestingModule,
         FormsModule,
         UsedMaterialModule,
-        BrowserAnimationsModule
-      ],
-      declarations: [EmpDetailsComponent, SalChangerComponent]
-    })
+        BrowserAnimationsModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
       .compileComponents();
     fixture = TestBed.createComponent(EmpDetailsComponent);
     component = fixture.componentInstance;
