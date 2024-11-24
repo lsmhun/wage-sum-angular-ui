@@ -97,10 +97,11 @@ export class DynamicDataSource implements DataSource<DynamicFlatNode> {
 }
 
 @Component({
-  selector: 'app-emp-tree',
-  templateUrl: './emp-tree.component.html',
-  styleUrls: ['./emp-tree.component.sass'],
-  providers: [EmpService]
+    selector: 'app-emp-tree',
+    templateUrl: './emp-tree.component.html',
+    styleUrls: ['./emp-tree.component.sass'],
+    providers: [EmpService],
+    standalone: false
 })
 export class EmpTreeComponent implements OnInit {
 

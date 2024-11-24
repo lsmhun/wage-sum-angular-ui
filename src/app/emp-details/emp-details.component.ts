@@ -6,9 +6,10 @@ import { Emp } from 'build/openapi/model/emp';
 import { filter } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-emp-details',
-  templateUrl: './emp-details.component.html',
-  styleUrls: ['./emp-details.component.sass']
+    selector: 'app-emp-details',
+    templateUrl: './emp-details.component.html',
+    styleUrls: ['./emp-details.component.sass'],
+    standalone: false
 })
 export class EmpDetailsComponent implements OnInit {
   constructor(private employeeService: EmpService,

@@ -6,9 +6,10 @@ import { filter } from 'rxjs/operators';
 import { Emp } from 'build/openapi/model/emp';
 
 @Component({
-  selector: 'app-sal-changer',
-  templateUrl: './sal-changer.component.html',
-  styleUrls: ['./sal-changer.component.sass']
+    selector: 'app-sal-changer',
+    templateUrl: './sal-changer.component.html',
+    styleUrls: ['./sal-changer.component.sass'],
+    standalone: false
 })
 export class SalChangerComponent implements OnInit, OnChanges {
 

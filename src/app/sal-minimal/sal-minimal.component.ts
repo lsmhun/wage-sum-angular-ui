@@ -2,9 +2,10 @@ import { Component,  OnInit, Input } from '@angular/core';
 import { SalService } from 'build/openapi';
 
 @Component({
-  selector: 'app-sal-minimal',
-  templateUrl: './sal-minimal.component.html',
-  styleUrls: ['./sal-minimal.component.sass']
+    selector: 'app-sal-minimal',
+    templateUrl: './sal-minimal.component.html',
+    styleUrls: ['./sal-minimal.component.sass'],
+    standalone: false
 })
 export class SalMinimalComponent implements OnInit {
 
