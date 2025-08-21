@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { EmpService } from 'build/openapi/api/emp.service';
-import { Emp } from 'build/openapi/model/emp';
+import { EmpService } from '../../../build/openapi/api/emp.service';
+import { Emp } from '../../../build/openapi/model/emp';
 
 import { filter } from 'rxjs/operators';
 

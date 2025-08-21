@@ -141,7 +141,7 @@ This can be slow, but most of the cases `ng serve -o` is enough.
 After that point an example employee could be defined in main component.
 
 ```typescript
-import { Emp } from 'build/openapi/model/emp';
+import { Emp } from '../../../build/openapi/model/emp';
 ...
 exampleEmp: Emp = {
     userName: "man1",
@@ -310,18 +310,18 @@ asynch and reactive calls, so knowledge could be extended with some
 RxJS background. During test creation we need some 
 _Observable<>_ definitions.
 
-Afer that _spyOn()_ method can be used with 
+Afer that _jest.spyOn()_ method can be used with 
 [fluent](https://en.wikipedia.org/wiki/Fluent_interface) format. 
 
 ```typescript
     // given salService
     const salService = TestBed.inject(SalService);
     const httpEventSal: HttpEvent<string> = new HttpResponse<string>({ body: "123" });
-    spyOn(salService, 'getSalByEmpId').and.returnValue(of(httpEventSal));
+    jest.spyOn(salService, 'getSalByEmpId').mockReturnValue(of(httpEventSal));
 ```
 
 Ordering is important! First we need _TestBed.configureTestingModule()_, 
-then there could be the mocking injection and _spyOn()_ usage.
+then there could be the mocking injection and _jest.spyOn()_ usage.
 
 ![Wagesum Angular UI - karma test](wagesum-ui-05-karma-test.png)
 

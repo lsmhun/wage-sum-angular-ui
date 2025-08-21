@@ -2,9 +2,8 @@ import { HttpEvent, HttpResponse, provideHttpClient, withInterceptorsFromDi } fr
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Emp, EmpService, SalService } from 'build/openapi';
 import { of } from 'rxjs';
-import { UsedMaterialModule } from 'src/material.modules';
+import { UsedMaterialModule } from '../../material.modules';
 
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
@@ -12,6 +11,9 @@ import { FormsModule } from '@angular/forms';
 
 import { SalChangerComponent } from '../sal-changer/sal-changer.component';
 import { EmpDetailsComponent } from './emp-details.component';
+import { Emp } from '../../../build/openapi/model/emp';
+import { EmpService } from '../../../build/openapi/api/emp.service';
+import { SalService } from '../../../build/openapi/api/sal.service';
 
 describe('EmpDetailsComponent', () => {
   let component: EmpDetailsComponent;
@@ -44,16 +46,16 @@ describe('EmpDetailsComponent', () => {
       userName: "man1"
     };
     const httpEventEmp: HttpEvent<Emp> = new HttpResponse<Emp>({ body: data });
-    spyOn(empService, 'getEmpById').and.returnValue(of(httpEventEmp));
+    jest.spyOn(empService, 'getEmpById').mockReturnValue(of(httpEventEmp));
 
     // given mgrList
     const httpEventMgrList: HttpEvent<Array<Emp>> = new HttpResponse<Array<Emp>>({ body: [data] });
-    spyOn(empService, 'findEmpsByType').and.returnValue(of(httpEventMgrList));
+    jest.spyOn(empService, 'findEmpsByType').mockReturnValue(of(httpEventMgrList));
 
     // given salService
     const salService = TestBed.inject(SalService);
     const httpEventSal: HttpEvent<string> = new HttpResponse<string>({ body: "123" });
-    spyOn(salService, 'getSalByEmpId').and.returnValue(of(httpEventSal));
+    jest.spyOn(salService, 'getSalByEmpId').mockReturnValue(of(httpEventSal));
 
   });
 

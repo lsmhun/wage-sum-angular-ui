@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { EmpService } from 'build/openapi/api/emp.service';
+import { EmpService } from '../../../build/openapi/api/emp.service';
 
 
 /** Flat node with expandable and level information */

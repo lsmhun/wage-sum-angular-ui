@@ -2,18 +2,18 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UsedMaterialModule } from 'src/material.modules';
+import { UsedMaterialModule } from '../../material.modules';
 
 import { FormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 
 import { HttpEvent, HttpResponse, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-import { Emp, SalService } from 'build/openapi';
-
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { SalChangerComponent } from './sal-changer.component';
+import { Emp } from '../../../build/openapi/model/emp';
+import { SalService } from '../../../build/openapi/api/sal.service';
 
 describe('SalChangerComponent', () => {
   let component: SalChangerComponent;
@@ -44,7 +44,7 @@ describe('SalChangerComponent', () => {
     // given salService
     const salService = TestBed.inject(SalService);
     const httpEventSal: HttpEvent<string> = new HttpResponse<string>({body: "123"});
-    spyOn(salService, 'getSalByEmpId').and.returnValue(of(httpEventSal));
+    jest.spyOn(salService, 'getSalByEmpId').mockReturnValue(of(httpEventSal));
 
     fixture = TestBed.createComponent(SalChangerComponent);
     component = fixture.componentInstance;

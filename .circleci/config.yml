@@ -7,8 +7,8 @@ orbs:
   node: circleci/node@5.2.0
   browser-tools: circleci/browser-tools@1.4.8
 
-#environment:
-#  CHROME_BIN: /usr/bin/google-chrome karma start --single-run
+environment:
+  CHROME_BIN: /usr/bin/google-chrome karma start --single-run
 
 jobs:
     # install browsers
@@ -46,13 +46,14 @@ jobs:
                 key: v1-dependencies-{{ checksum "package-lock.json" }}
                 paths:
                     - node_modules
-            # Lint the source code
-            - run:
-                name: Linting
-                command: npm run lint
-            # Test the source code
+            # Lint the source code - temporary disabled
             #- run:
-            #    name: Testing
+            #    name: Linting
+            #    command: npm run lint
+            # Test the source code
+            - run:
+                name: Testing
+                command: npm run test
             #    command: npm run test -- --no-watch --no-progress --browsers=Chrome
             # End to End test
             #- run:

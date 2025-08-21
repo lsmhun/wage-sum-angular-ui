@@ -16,7 +16,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { UsedMaterialModule } from '../material.modules';
 
-import { BASE_PATH } from 'build/openapi/variables';
+import { BASE_PATH } from '../../build/openapi/variables';
 import { environment } from '../environments/environment';
 import { SalChangerComponent } from './sal-changer/sal-changer.component';
 import { SalMinimalComponent } from './sal-minimal/sal-minimal.component';

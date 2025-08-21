@@ -3,7 +3,7 @@ import type { Config } from 'jest';
 const config: Config = {
   preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['./setup-jest.ts'], 
-  globalSetup: 'jest-preset-angular/global-setup',
+  testEnvironment: 'jsdom',
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },
