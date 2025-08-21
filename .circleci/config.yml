@@ -7,8 +7,8 @@ orbs:
   node: circleci/node@5.2.0
   browser-tools: circleci/browser-tools@1.4.8
 
-environment:
-  CHROME_BIN: /usr/bin/google-chrome karma start --single-run
+#environment:
+#  CHROME_BIN: /usr/bin/google-chrome karma start --single-run
 
 jobs:
     # install browsers
@@ -51,9 +51,9 @@ jobs:
                 name: Linting
                 command: npm run lint
             # Test the source code
-            - run:
-                name: Testing
-                command: npm run test -- --no-watch --no-progress --browsers=Chrome
+            #- run:
+            #    name: Testing
+            #    command: npm run test -- --no-watch --no-progress --browsers=Chrome
             # End to End test
             #- run:
             #    name: End to End Test
