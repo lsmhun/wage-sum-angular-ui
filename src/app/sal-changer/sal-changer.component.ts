@@ -1,9 +1,9 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { SalService } from 'build/openapi';
 import { filter } from 'rxjs/operators';
 
-import { Emp } from 'build/openapi/model/emp';
+import { Emp } from '../../../build/openapi/model/emp';
+import { SalService } from '../../../build/openapi/api/sal.service';
 
 @Component({
     selector: 'app-sal-changer',

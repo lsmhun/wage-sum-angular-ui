@@ -1,16 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UsedMaterialModule } from 'src/material.modules';
+import { UsedMaterialModule } from '../../material.modules';
 
 import { of } from 'rxjs';
 
 import { HttpEvent, HttpResponse, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-import { SalService } from 'build/openapi';
-
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { SalMinimalComponent } from './sal-minimal.component';
+import { SalService } from '../../../build/openapi/api/sal.service';
 
 describe('SalMinimalComponent', () => {
   let component: SalMinimalComponent;
@@ -28,7 +27,7 @@ describe('SalMinimalComponent', () => {
     // given salService
     const salService = TestBed.inject(SalService);
     const httpEventSal: HttpEvent<string> = new HttpResponse<string>({body: "123"});
-    spyOn(salService, 'getSalByEmpId').and.returnValue(of(httpEventSal));
+    jest.spyOn(salService, 'getSalByEmpId').mockReturnValue(of(httpEventSal));
 
     fixture = TestBed.createComponent(SalMinimalComponent);
     component = fixture.componentInstance;

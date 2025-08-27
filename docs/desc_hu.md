@@ -136,7 +136,7 @@ Ez eléggé lassít, de legtöbbször úgyis az `ng serve -o` lesz futtatva.
 Ezek után már fel is vehetünk egy példa dolgozót a main komponensbe:
 
 ```typescript
-import { Emp } from 'build/openapi/model/emp';
+import { Emp } from '../../../build/openapi/model/emp';
 ...
 exampleEmp: Emp = {
     userName: "man1",
@@ -315,7 +315,7 @@ library segítségével éri el az aszinkron és reaktív működést, ezért
 érdemes ennek jobban is utánaolvasni. 
 A tesztek esetén is _Observable<>_ definíciókra lesz szükségünk.
 
-Az egyes hívásokat ezek után a _spyOn()_ metódussal, 
+Az egyes hívásokat ezek után a _jest.spyOn()_ metódussal, 
 [fluent](https://en.wikipedia.org/wiki/Fluent_interface) formában lehet
 a választ emulálni.
 
@@ -323,11 +323,11 @@ a választ emulálni.
     // given salService
     const salService = TestBed.inject(SalService);
     const httpEventSal: HttpEvent<string> = new HttpResponse<string>({ body: "123" });
-    spyOn(salService, 'getSalByEmpId').and.returnValue(of(httpEventSal));
+    jest.spyOn(salService, 'getSalByEmpId').mockReturnValue(of(httpEventSal));
 ```
 
 A sorrend fontos: előbb kell legyen az instance  _TestBed.configureTestingModule()_l és csak utána
-lehet injektálni, meg spyOn()-t használni.
+lehet injektálni, meg jest.spyOn()-t használni.
 
 ![Wagesum Angular UI - karma test](wagesum-ui-05-karma-test.png)
 

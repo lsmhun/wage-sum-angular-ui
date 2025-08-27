@@ -1,5 +1,5 @@
 import { Component,  OnInit, Input } from '@angular/core';
-import { SalService } from 'build/openapi';
+import { SalService } from '../../../build/openapi/api/sal.service';
 
 @Component({
     selector: 'app-sal-minimal',
