@@ -1,4 +1,4 @@
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/lsmhun/wage-sum-angular-ui/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/lsmhun/wage-sum-angular-ui/tree/main)
+![GA Angular Build](https://github.com/lsmhun/wage-sum-angular-ui/actions/workflows/build-angular.yml/badge.svg)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Flsmhun%2Fwage-sum-angular-ui.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Flsmhun%2Fwage-sum-angular-ui?ref=badge_shield)
 
 # WageSum Angular UI
