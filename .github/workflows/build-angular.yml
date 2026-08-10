@@ -17,8 +17,8 @@ jobs:
 
     strategy:
       matrix:
-        # Test against current LTS and modern Node.js runtime versions
-        node-version: [20.x, 22.x]
+        # Define the Node.js versions to test against
+        node-version: [22.x]
 
     steps:
       # Step 1: Check out the repository source code

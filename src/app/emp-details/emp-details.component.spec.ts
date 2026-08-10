@@ -49,7 +49,7 @@ describe('EmpDetailsComponent', () => {
     jest.spyOn(empService, 'getEmpById').mockReturnValue(of(httpEventEmp));
 
     // given mgrList
-    const httpEventMgrList: HttpEvent<Array<Emp>> = new HttpResponse<Array<Emp>>({ body: [data] });
+    const httpEventMgrList: HttpEvent<Emp[]> = new HttpResponse<Emp[]>({ body: [data] });
     jest.spyOn(empService, 'findEmpsByType').mockReturnValue(of(httpEventMgrList));
 
     // given salService
