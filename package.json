@@ -30,7 +30,7 @@
         "rxjs": "~7.5.0",
         "tslib": "^2.3.0",
         "typeface-roboto": "^1.1.13",
-        "zone.js": "~0.15.0"
+        "zone.js": "~0.16.2"
     },
     "devDependencies": {
         "@angular-builders/jest": "^22.0.0",
