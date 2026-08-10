@@ -3,6 +3,7 @@
 
 name: Node.js CI
 
+# Define trigger events: runs on pushes and pull requests targeting the main branch
 on:
   push:
     branches: [ "main" ]
@@ -11,24 +12,38 @@ on:
 
 jobs:
   build:
-
+    # Run pipeline on the latest Ubuntu runner environment
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
+        # Test against current LTS and modern Node.js runtime versions
         node-version: [20.x, 22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-#        cache-dependency-path: package-lock.json
-    - run: npm install --package-lock-only
-    - run: npm ci
-    - run: npm run generate:api
-    - run: npm run build --if-present
-    - run: npm test
+      # Step 1: Check out the repository source code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up the specified Node.js version and enable npm caching
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      # Step 3: Clean install dependencies using package-lock.json with legacy peer deps flag
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      # Step 4: Run API generation script if present in package.json
+      - name: Generate API
+        run: npm run generate:api --if-present
+
+      # Step 5: Compile/build the Angular application if build script is present
+      - name: Build project
+        run: npm run build --if-present
+
+      # Step 6: Execute Jest unit tests
+      - name: Run unit tests
+        run: npm test
